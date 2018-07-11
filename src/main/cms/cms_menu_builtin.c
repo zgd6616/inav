@@ -109,10 +109,8 @@ static const OSD_Entry menuFeaturesEntries[] =
 #if defined(USE_NAV)
     OSD_SUBMENU_ENTRY("NAVIGATION", &cmsx_menuNavigation),
 #endif
-#if defined(VTX) || defined(USE_RTC6705)
-    OSD_SUBMENU_ENTRY("VTX", &cmsx_menuVtx),
-#endif // VTX || USE_RTC6705
 #if defined(USE_VTX_CONTROL)
+    OSD_SUBMENU_ENTRY("VTX", &cmsx_menuVtx),
 #if defined(USE_VTX_SMARTAUDIO)
     OSD_SUBMENU_ENTRY("VTX SA", &cmsx_menuVtxSmartAudio),
 #endif

@@ -163,12 +163,13 @@ static long trampCmsCommence(displayPort_t *pDisp, const void *self)
     UNUSED(pDisp);
     UNUSED(self);
 
+#if 0
     trampSetBandAndChannel(trampCmsBand, trampCmsChan);
     trampSetRFPower(trampPowerTable[trampCmsPower-1]);
 
     // If it fails, the user should retry later
     trampCommitChanges();
-
+#endif
     // update'vtx_' settings
     vtxSettingsConfigMutable()->band = trampCmsBand;
     vtxSettingsConfigMutable()->channel = trampCmsChan;

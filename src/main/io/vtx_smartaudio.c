@@ -76,6 +76,7 @@ static vtxDevice_t vtxSmartAudio = {
     .capability.bandCount = VTX_SMARTAUDIO_BAND_COUNT,
     .capability.channelCount = VTX_SMARTAUDIO_CHANNEL_COUNT,
     .capability.powerCount = VTX_SMARTAUDIO_POWER_COUNT,
+    .bandLetters = vtx58BandLetter,
     .bandNames = (char **)vtx58BandNames,
     .channelNames = (char **)vtx58ChannelNames,
     .powerNames = (char **)saPowerNames,

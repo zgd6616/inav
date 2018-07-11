@@ -360,7 +360,11 @@ static int cmsDrawMenuEntry(displayPort_t *pDisplay, const OSD_Entry *p, uint8_t
                 const OSD_UINT8_t *ptr = p->data;
                 val = ptr->val;
             }
-            itoa(*val, buff, 10);
+            if (val) {
+                itoa(*val, buff, 10);
+            } else {
+                strcpy(buff, "-");
+            }
             cmsPadToSize(buff, 5);
             cnt = displayWrite(pDisplay, RIGHT_MENU_COLUMN(pDisplay), row, buff);
             CLR_PRINTVALUE(p, screenRow);
@@ -392,7 +396,11 @@ static int cmsDrawMenuEntry(displayPort_t *pDisplay, const OSD_Entry *p, uint8_t
                 const OSD_UINT16_t *ptr = p->data;
                 val = ptr->val;
             }
-            itoa(*val, buff, 10);
+            if (val) {
+                itoa(*val, buff, 10);
+            } else {
+                strcpy(buff, "-");
+            }
             cmsPadToSize(buff, 5);
             cnt = displayWrite(pDisplay, RIGHT_MENU_COLUMN(pDisplay), row, buff);
             CLR_PRINTVALUE(p, screenRow);
@@ -408,7 +416,11 @@ static int cmsDrawMenuEntry(displayPort_t *pDisplay, const OSD_Entry *p, uint8_t
                 const OSD_INT16_t *ptr = p->data;
                 val = ptr->val;
             }
-            itoa(*val, buff, 10);
+            if (val) {
+                itoa(*val, buff, 10);
+            } else {
+                strcpy(buff, "-");
+            }
             cmsPadToSize(buff, 5);
             cnt = displayWrite(pDisplay, RIGHT_MENU_COLUMN(pDisplay), row, buff);
             CLR_PRINTVALUE(p, screenRow);
@@ -418,7 +430,11 @@ static int cmsDrawMenuEntry(displayPort_t *pDisplay, const OSD_Entry *p, uint8_t
     case OME_FLOAT:
         if (IS_PRINTVALUE(p, screenRow) && p->data) {
             const OSD_FLOAT_t *ptr = p->data;
-            cmsFormatFloat(*ptr->val * ptr->multipler, buff);
+            if (ptr->val) {
+                cmsFormatFloat(*ptr->val * ptr->multipler, buff);
+            } else {
+                strcpy(buff, "-");
+            }
             cmsPadToSize(buff, 5);
             cnt = displayWrite(pDisplay, RIGHT_MENU_COLUMN(pDisplay) - 1, row, buff); // XXX One char left ???
             CLR_PRINTVALUE(p, screenRow);

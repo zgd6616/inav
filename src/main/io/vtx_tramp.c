@@ -61,6 +61,7 @@ static vtxDevice_t vtxTramp = {
     .capability.bandCount = VTX_TRAMP_BAND_COUNT,
     .capability.channelCount = VTX_TRAMP_CHANNEL_COUNT,
     .capability.powerCount = VTX_TRAMP_POWER_COUNT,
+    .bandLetters = vtx58BandLetter,
     .bandNames = (char **)vtx58BandNames,
     .channelNames = (char **)vtx58ChannelNames,
     .powerNames = (char **)trampPowerNames,

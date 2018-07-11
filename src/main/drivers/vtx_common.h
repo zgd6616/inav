@@ -89,6 +89,7 @@ typedef struct vtxDevice_s {
     vtxDeviceCapability_t capability;
 
     uint16_t *frequencyTable;  // Array of [bandCount][channelCount]
+    const char *bandLetters;      // char bandLetters[bandCount]
     char **bandNames;    // char *bandNames[bandCount]
     char **channelNames;    // char *channelNames[channelCount]
     char **powerNames;   // char *powerNames[powerCount]
