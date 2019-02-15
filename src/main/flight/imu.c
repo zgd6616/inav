@@ -90,7 +90,10 @@ FASTRAM float rMat[3][3];
 
 STATIC_FASTRAM imuRuntimeConfig_t imuRuntimeConfig;
 
+/* Feedback from GPS */
+STATIC_FASTRAM bool gpsNewDataAvailable;
 STATIC_FASTRAM bool gpsHeadingInitialized;
+
 
 PG_REGISTER_WITH_RESET_TEMPLATE(imuConfig_t, imuConfig, PG_IMU_CONFIG, 0);
 
@@ -101,6 +104,11 @@ PG_RESET_TEMPLATE(imuConfig_t, imuConfig,
     .dcm_ki_mag = 0,                // 0.00 * 10000
     .small_angle = 25
 );
+
+void gpsNotifyNewData_IMU(void)
+{
+    gpsNewDataAvailable = true;
+}
 
 STATIC_UNIT_TESTED void imuComputeRotationMatrix(void)
 {
@@ -599,13 +607,18 @@ static void imuCalculateEstimatedAttitude(float dT)
     }
 #endif
 
+    bool useGPSVelEF = sensors(SENSOR_GPS) && STATE(GPS_FIX) && gpsSol.flags.validVelNE && gpsSol.flags.validVelNE;
+    fpVector3_t gpsVelEF = { .v = { gpsSol.velNED[X], gpsSol.velNED[Y], gpsSol.velNED[Z] } };
     fpVector3_t measuredMagBF = { .v = { mag.magADC[X], mag.magADC[Y], mag.magADC[Z] } };
 
     imuMahonyAHRSupdate(dT, &imuMeasuredRotationBF,
                             useAcc ? &imuMeasuredAccelBF : NULL,
                             useMag ? &measuredMagBF : NULL,
                             useCOG, courseOverGround,
-                            NULL, false);
+                            useGPSVelEF ? &gpsVelEF : NULL, gpsNewDataAvailable);
+
+    // Consumed GPS data
+    gpsNewDataAvailable = false;
 
     imuUpdateEulerAngles();
 }
