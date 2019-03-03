@@ -37,6 +37,7 @@ COMMON_SRC = \
             drivers/bus_i2c_soft.c \
             drivers/bus_spi.c \
             drivers/display.c \
+            drivers/display_font_metadata.c \
             drivers/exti.c \
             drivers/io.c \
             drivers/io_pca9685.c \
@@ -92,6 +93,7 @@ COMMON_SRC = \
             flight/rth_estimator.c \
             flight/servos.c \
             flight/wind_estimator.c \
+            io/agh_osd.c \
             io/beeper.c \
             io/lights.c \
             io/pwmdriver_i2c.c \
@@ -169,6 +171,7 @@ COMMON_SRC = \
             io/opflow_cxof.c \
             io/opflow_msp.c \
             io/dashboard.c \
+            io/displayport_agh_osd.c \
             io/displayport_max7456.c \
             io/displayport_msp.c \
             io/displayport_oled.c \
