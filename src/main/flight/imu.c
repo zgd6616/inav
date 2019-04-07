@@ -607,7 +607,7 @@ static void imuCalculateEstimatedAttitude(float dT)
     }
 #endif
 
-    bool useGPSVelEF = sensors(SENSOR_GPS) && STATE(GPS_FIX) && gpsSol.flags.validVelNE && gpsSol.flags.validVelNE;
+    bool useGPSVelEF = isImuHeadingValid() && sensors(SENSOR_GPS) && STATE(GPS_FIX) && gpsSol.flags.validVelNE && gpsSol.flags.validVelD;
     fpVector3_t gpsVelEF = { .v = { gpsSol.velNED[X], gpsSol.velNED[Y], gpsSol.velNED[Z] } };
     fpVector3_t measuredMagBF = { .v = { mag.magADC[X], mag.magADC[Y], mag.magADC[Z] } };
 
