@@ -63,7 +63,7 @@
 #define SCHEDULER_DELAY_LIMIT           100
 #endif
 
-#if (FLASH_SIZE > 256)
+#if (FLASH_SIZE > 255)
 #define USE_EXTENDED_CMS_MENUS
 #define USE_UAV_INTERCONNECT
 #define USE_RX_UIB
