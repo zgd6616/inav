@@ -63,6 +63,11 @@
 #define SCHEDULER_DELAY_LIMIT           100
 #endif
 
+// Allow default optic flow boards
+#define USE_OPFLOW
+#define USE_OPFLOW_CXOF
+#define USE_OPFLOW_MSP
+
 #if (FLASH_SIZE > 256)
 #define USE_EXTENDED_CMS_MENUS
 #define USE_UAV_INTERCONNECT
